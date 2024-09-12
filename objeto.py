@@ -1,26 +1,47 @@
-import recursos
-import math
+from __future__ import annotations
+
 import pygame as pg
-import config
+from dataclasses import dataclass
 
+@dataclass
 class Objeto:
-    #   Objetos (imagens) do jogo. Um objeto é formado de uma lista de imagens assim como posições
-    # relativa a imagens[0] (primeira imagem da lista) e tamanhos relativos ao cenário do jogo.
+    """
+    Nodo da árvore de objetos (imagens, figuras, etc...) do jogo.
+    O objeto carrega informações sobre como, aonde e que tamanho que o objeto deve
+    ser carregado na tela.
 
-    def __init__(self, imagens):
-        self.imag = {                      
-            'super': None,               # Superfícies ou rects das imagens (nesta ordem)
-            'pos_x': None,               # Posição em pixels left do rect contendo objeto
-            'pos_y': None,               # Posição em pixels up do rect contendo objeto
-            'dim_x': None,               # Largura em pixels objeto (largura, altura)
-            'dim_y': None,               # Altura em pixels objeto (largura, altura)
-            # O tamanho relativo considera o tamanho da superfície relativa a altura
-            # do cenário (geralmente 100 unidades). Isso garante consistência entre 
-            # os tamanhos dos objetos do jogo independente da resolução inicia escolhida.
-            'largura_rel': None,         # Largura relativa ao cenário em jogo
-            'escala': None,              # Número que deve imagem original deve ser escalada
-            'refletido': None            # Bool: imagem está refletida ou não
-        }
+    :Atributos:
+    nome : str -- Nome do objeto
+    pai : Objeto -- Pai do objeto
+    rentangulo : pygame.Rect -- (left, top, width, height) onde left e top definem a posição
+    -- enquanto que width e height definem o tamanho do retângulo. Note que tanto a posição como
+    -- o tamanho são relativos ao rect do pai (considerando a altura do pai como 100)
+    -- Note que o topo esquerdo da tela tem posição (0, 0) e o eixo y cresce de cima para baixo
+    -- enquanto que o eixo x tem a direção habitual (esquerda para direita).
+    filhos : List[Objeto] -- Lista contendo os filhos do objeto
 
-        self.carregar_imagens(imagens)
-        self.set_largura_rel()
+    """
+
+    nome : str
+    pai: Objeto | None
+    retangulo: pg.Rect # Retângulo relativo ao pai (considerando altura do pai como 100)
+    filhos : List[Objeto]
+    
+    def set_pai(self, novo_pai : Objeto) -> None:
+        self.pai = novo_pai
+
+    def get_pai(self) -> Objeto:
+        return self.pai
+
+    def inserir_filho(self, novo_filho : Objeto) -> None:
+        self.filhos.append(novo_filho)
+        
+    def get_filhos(self) -> List[Objeto]:
+        return self.filhos
+
+    def desenhar(self) -> None:
+        """ 
+        Desenha objeto na tela.
+
+        """
+        pass

@@ -71,10 +71,11 @@ class Objeto:
 
 
     """ Setters e Getters retângulo absoluto """
-    def set_rect_absoluto(self, rect_absoluto : List[float]) -> None:
+    def set_rect_absoluto(self, rect_absoluto : pg.Rect) -> None:
         self.rect_absoluto = rect_absoluto
 
-    def get_rect_absoluto(self) -> List[float]:
+    # def get_rect_absoluto(self) -> List[float]:
+    def get_rect_absoluto(self) -> pg.Rect:
         return self.rect_absoluto
 
     def carregar(self):

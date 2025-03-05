@@ -17,6 +17,7 @@ class Jogo():
         self.quantidade_caixas_met = quantidade
 
     def get_quant_caixas_met(self) -> int:
+
         return self.quantidade_caixas_met
 
     def inicializar_objetos(self) -> None:

@@ -53,7 +53,7 @@ class Modos():
         
         self.modos['Jogo'].update( { 'Janela' : [0, 0, res_x, res_y] } )
         
-        self.modos['Jogo'].update( { 'Cenário' : [0, 0.5, None, 1] } )
+        self.modos['Jogo'].update( { 'Cenário' : [0, 0, None, 1] } )
 
         self.modos['Jogo'].update( { 'Corpo da Empilhadeira' : [0.2, 0.61, None, 0.2] } )
 
